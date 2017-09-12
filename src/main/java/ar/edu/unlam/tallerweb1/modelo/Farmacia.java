@@ -20,10 +20,10 @@ public class Farmacia {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Punto geoLocalizacion;
 	
-//	A que se refieren los dos String que se pasan por parametro?
-//	Cual de los tres String usamos??
-//	public Farmacia(String, String){	
-//	}
+	public Farmacia(String nombre, String diaDeTurno){
+		this.nombre = nombre;
+		this.diaDeTurno = diaDeTurno;
+	}
 	
 	public Farmacia(){
 		

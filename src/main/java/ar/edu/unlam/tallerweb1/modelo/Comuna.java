@@ -1,10 +1,18 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Comuna {
-	private long idComuna;
+	@Id
+	@GeneratedValue (strategy=GenerationType.IDENTITY)
+	private Long idComuna;
 	private String nombre;
 	
-	public long getIdComuna() {
+	public Long getIdComuna() {
 		return idComuna;
 	}
 	public void setIdComuna(Long idComuna) {
