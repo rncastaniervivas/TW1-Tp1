@@ -1,10 +1,17 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+@Entity
 public class Farmacia {
-	private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long idFarmacia;
 	private String nombre;
 	private String telefono;
 	private String diaDeTurno;
@@ -23,10 +30,10 @@ public class Farmacia {
 	}
 	
 	public Long getId() {
-		return id;
+		return idFarmacia;
 	}
 	public void setId(Long id) {
-		this.id = id;
+		this.idFarmacia = id;
 	}
 	public String getNombre() {
 		return nombre;
