@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
+import ar.edu.unlam.tallerweb1.modelo.Barrio;
 import ar.edu.unlam.tallerweb1.modelo.Direccion;
 import ar.edu.unlam.tallerweb1.modelo.Farmacia;
 
@@ -62,11 +63,66 @@ public class FarmaciaTest extends SpringTest {
 		getSession().save(farmaciaAzul);
 		
 		List<Farmacia> resultado = getSession().createCriteria(Farmacia.class)
-				.createAlias("direccion", "farmaDir")
-				.add(Restrictions.eq("farmaDir.calle", "Suipacha"))
+				.add(Restrictions.eq("direccion", calleSuipacha))
 				.list();
 		
 		assertThat(resultado).hasSize(3);
+		
+	}
+	
+	@Test
+	@Transactional
+	@Rollback(true)
+	public void testQueBuscaLasFarmaciasDeUnBarrio(){
+		Barrio villaLuro = new Barrio();
+		villaLuro.setNombre("Villa Luro");
+		getSession().save(villaLuro);
+		
+		Barrio villaLuzuriaga = new Barrio();
+		villaLuzuriaga.setNombre("Villa Luzuriaga");
+		getSession().save(villaLuzuriaga);
+		
+		Barrio caballito = new Barrio();
+		caballito.setNombre("Caballito");
+		getSession().save(caballito);
+		
+		Direccion calleSuipacha = new Direccion();
+		calleSuipacha.setCalle("Suipacha");
+		calleSuipacha.setBarrio(villaLuro);
+		getSession().save(calleSuipacha);
+		
+		Direccion calleArieta = new Direccion();
+		calleArieta.setCalle("Arieta");
+		calleArieta.setBarrio(villaLuzuriaga);
+		getSession().save(calleArieta);
+		
+		Direccion donBosco = new Direccion();
+		donBosco.setCalle("Don Bosco");
+		donBosco.setBarrio(caballito);
+		getSession().save(donBosco);
+		
+		Farmacia farmacity = new Farmacia ("Farmacity", "Martes");
+		farmacity.setDireccion(calleSuipacha);
+		getSession().save(farmacity);
+		
+		Farmacia farmaciaDelOeste = new Farmacia ("Farmacia del Oeste", "Jueves");
+		farmaciaDelOeste.setDireccion(calleSuipacha);
+		getSession().save(farmaciaDelOeste);
+		
+		Farmacia farmaciaArieta = new Farmacia ("Farmacia Arieta", "Martes");
+		farmaciaArieta.setDireccion(calleArieta);
+		getSession().save(farmaciaArieta);
+		
+		Farmacia farmaciaAzul = new Farmacia ("Farmacia Azul", "Viernes");
+		farmaciaAzul.setDireccion(calleSuipacha);
+		getSession().save(farmaciaAzul);
+		
+		List<Farmacia> resultado = getSession().createCriteria(Farmacia.class)
+				.createAlias("direccion", "farmaDir")
+				.add(Restrictions.eq("farmaDir.barrio", villaLuzuriaga))
+				.list();
+		
+		assertThat(resultado).hasSize(1);
 		
 	}
 }
