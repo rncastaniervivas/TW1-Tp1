@@ -1,9 +1,11 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Comuna {
@@ -11,6 +13,8 @@ public class Comuna {
 	@GeneratedValue (strategy=GenerationType.IDENTITY)
 	private Long idComuna;
 	private String nombre;
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Barrio barrios;
 	
 	public Long getIdComuna() {
 		return idComuna;
@@ -24,4 +28,11 @@ public class Comuna {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	public Barrio getBarrios() {
+		return barrios;
+	}
+	public void setBarrios(Barrio barrios) {
+		this.barrios = barrios;
+	}
+	
 }

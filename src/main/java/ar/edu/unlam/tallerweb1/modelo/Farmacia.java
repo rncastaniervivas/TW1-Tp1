@@ -1,11 +1,10 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Farmacia {
@@ -15,9 +14,9 @@ public class Farmacia {
 	private String nombre;
 	private String telefono;
 	private String diaDeTurno;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@OneToOne
 	private Direccion direccion;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@OneToOne
 	private Punto geoLocalizacion;
 	
 	public Farmacia(String nombre, String diaDeTurno){

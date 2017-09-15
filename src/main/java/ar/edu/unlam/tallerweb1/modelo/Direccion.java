@@ -1,11 +1,10 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Direccion {
@@ -14,7 +13,7 @@ public class Direccion {
 	private Long idDireccion;
 	private String calle;
 	private String numero;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@OneToMany
 	private Barrio barrio;
 	
 	public Direccion(String calle, String numero, Barrio barrio){
