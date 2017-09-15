@@ -14,7 +14,7 @@ public class Comuna {
 	private Long idComuna;
 	private String nombre;
 	@ManyToOne(fetch = FetchType.LAZY)
-	private Barrio barrios;
+	private Barrio barrio;
 	
 	public Long getIdComuna() {
 		return idComuna;
@@ -28,11 +28,11 @@ public class Comuna {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public Barrio getBarrios() {
-		return barrios;
+	public Barrio getBarrio() {
+		return barrio;
 	}
-	public void setBarrios(Barrio barrios) {
-		this.barrios = barrios;
+	public void setBarrio(Barrio barrio) {
+		this.barrio = barrio;
 	}
 	
 }

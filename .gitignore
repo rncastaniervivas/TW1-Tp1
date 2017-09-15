@@ -1,1 +1,4 @@
 /target/
+
+src/main/java/ar/edu/unlam/tallerweb1/modelo/Punto.java
+src/main/java/ar/edu/unlam/tallerweb1/modelo/Barrio.java
