@@ -24,8 +24,24 @@ public class OperacionesController {
 				ModelMap modelo = new ModelMap();
 				modelo.put("resultado", resultado);
 				return new ModelAndView("operaciones", modelo);
+			}else if(operacion.equals("multiplicar")){
+				Double resultado = operando1 * operando2;
+				ModelMap modelo = new ModelMap();
+				modelo.put("resultado", resultado);
+				return new ModelAndView("operaciones", modelo);
+			}else if(operacion.equals("dividir")){
+				if(operando2 != 0){
+					Double resultado = operando1 / operando2;
+					ModelMap modelo = new ModelMap();
+					modelo.put("resultado", resultado);
+					return new ModelAndView("operaciones", modelo);
+					}else{
+					//sale por falso si es igual a 0
+					return new ModelAndView("error");
+				 }
 			}else{
 				return new ModelAndView("error");
 			}
 	}
 }
+
